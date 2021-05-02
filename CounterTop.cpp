@@ -20,7 +20,7 @@
 
 using namespace std;
 
-CounterTop::CounterTop(){
+CounterTop::CounterTop() {
 	region = "";
 	ordercode = "";
 	stonecode = '?';
@@ -33,7 +33,7 @@ CounterTop::CounterTop(){
 	deped = 0;
 }
 
-void CounterTop::Output(){
+void CounterTop::Output() {
 	cout << setw(2) << stonecode
 	     << setw(8) << length
 	     << setw(8) << depth
@@ -48,7 +48,7 @@ void CounterTop::Output(){
 void CounterTop::OrderOutput() const {
 
 	cout << endl
-		 << setw(15) << "Order Number:" << setw(15) << ordercode << endl
+	     << setw(15) << "Order Number:" << setw(15) << ordercode << endl
 	     << setw(15) << "Stone:" << setw(15) << stonecode << endl
 	     << setw(15) << "Length:" << setw(15) << length << endl
 	     << setw(15) << "Depth:" << setw(15) << depth << endl

@@ -24,7 +24,7 @@
 
 using namespace std;
 
-class CounterTop{
+class CounterTop {
 private:
 	string region;
 	string ordercode;
@@ -40,30 +40,39 @@ private:
 public:
 	CounterTop();
 
-	void setReg(string R) {region = R;}
-	void setOC(string OC) {ordercode = OC;}
-	void setH(double H) {height = H;}
-	void setL(double L) {length = L;}
-	void setD(double D) {depth = D;}
-	void setP(double P) {price = P;}
-	void setA(int A) {area = A;}
-	void setLE(int LE) {lened = LE;}
-	void setDE(int DE) {deped = DE;}
-	void setSC(char SC) {stonecode = SC;}
+	void setReg(string R) { region = R; }
 
-	double getP() const{
+	void setOC(string OC) { ordercode = OC; }
+
+	void setH(double H) { height = H; }
+
+	void setL(double L) { length = L; }
+
+	void setD(double D) { depth = D; }
+
+	void setP(double P) { price = P; }
+
+	void setA(int A) { area = A; }
+
+	void setLE(int LE) { lened = LE; }
+
+	void setDE(int DE) { deped = DE; }
+
+	void setSC(char SC) { stonecode = SC; }
+
+	double getP() const {
 		return price;
 	}
 
-	double getA() const{
+	double getA() const {
 		return area;
 	}
 
-	string getR() const{
+	string getR() const {
 		return region;
 	}
 
-	char getSC() const{
+	char getSC() const {
 		return stonecode;
 	}
 
@@ -75,7 +84,6 @@ public:
 
 
 };
-
 
 
 #endif //AWV9P4_COUNTERTOP_H

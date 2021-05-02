@@ -7,30 +7,43 @@
 
 using namespace std;
 
-
 //Adds another Value
-void LinkedList::add_node(CounterTop &v) {
+void LinkedList::add_node(CounterTop v) {
 
-	Node* tmp = new Node;
+	struct Node *tmp;
+	tmp =(struct Node*)malloc(sizeof(struct Node));
 	tmp->data = v;
 	tmp->next = nullptr;
 
-	if (head == nullptr){
+	if (head == nullptr) {
 		head = tmp;
 		tail = tmp;
 	} else {
+		tail = tmp;
 		tail->next = tmp;
-		tail = tail->next;
 	}
 	size++;
 }
 
 //Displays All Stored Values
-CounterTop LinkedList::display(Node *head) {
-while(head != nullptr){
-	head->data.Output();
-	display(head->next);
-	return head->data;
+CounterTop LinkedList::display(Node *head){
+
+	while (head != nullptr) {
+		head->data.Output();
+		display(head->next);
+		return head->data;
+	}
+}
+
+ void LinkedList::disp(Node *head){
+	if(head == nullptr)
+	{
+		cout << "NULL" << endl;
+	}
+	else
+	{
+		head->data.CounterTop::Output();
+		disp(head->next);
 	}
 }
 
@@ -45,16 +58,16 @@ bool LinkedList::empty() {
 	}
 }
 
-CounterTop LinkedList::Data(Node* ptr){
+CounterTop LinkedList::Data(Node *ptr) {
 
 	return ptr->data;
 }
 
 void LinkedList::clear() {
-	Node* current = head;
+	Node *current = head;
 
-	while( current != nullptr ) {
-		Node* next = current->next;
+	while (current != nullptr) {
+		Node *next = current->next;
 		delete current;
 		current = next;
 	}
@@ -63,3 +76,4 @@ void LinkedList::clear() {
 	cout << "All Data Cleared" << endl;
 
 }
+

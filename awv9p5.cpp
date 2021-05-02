@@ -61,7 +61,7 @@ bool clearallvectors(LinkedList &);
 int main() {
 
 	bool validation = false;
-	LinkedList *Data = nullptr;
+	LinkedList Data;
 
 // Introduction Message
 
@@ -85,32 +85,32 @@ int main() {
 			case 'U':
 			case 'u':
 				filename = get_file_path();
-				uploadfile(filename, validation, *Data);
+				uploadfile(filename, validation, Data);
 				break;
 
 			case 'A':
 			case 'a':
-				alldetails(*Data);
+				alldetails(Data);
 				break;
 
 			case 'O':
 			case 'o':
-				orderdetails(*Data);
+				orderdetails(Data);
 				break;
 
 			case 'R':
 			case 'r':
-				summaryregion(*Data);
+				summaryregion(Data);
 				break;
 
 			case 'S':
 			case 's':
-				summarystone(*Data);
+				summarystone(Data);
 				break;
 
 			case 'C':
 			case 'c':
-				cleared = clearallvectors(*Data);
+				cleared = clearallvectors(Data);
 				if (!cleared) {
 					cout << "Vectors are already Empty.\n";
 				}
@@ -437,7 +437,7 @@ void alldetails(LinkedList &Data) {
 	int count = 0;
 	double tarea = 0, tcost = 0;
 	double area, Price;
-	Node *head = Data.gethead();
+	Node* head = Data.gethead();
 	CounterTop Counter;
 
 	if (vectors) {
@@ -483,7 +483,7 @@ void orderdetails(LinkedList &Data) {
 			int i = 0;
 			int n = Data.getsize();
 
-			Node* tmp = Data.gethead();
+			Node *tmp = Data.gethead();
 
 			while (tmp != nullptr) {
 				if (tmp->data.Comparator(search))  //If element is present in the list
@@ -492,11 +492,11 @@ void orderdetails(LinkedList &Data) {
 					valid = true;
 				} else {
 					i++;
-					tmp = tmp->next;}
+					tmp = tmp->next;
+				}
 			}
 
-			if (i == n)
-			{
+			if (i == n) {
 				cout << endl << "Invalid Order Number" << endl;
 				valid = true;
 			}
@@ -540,16 +540,15 @@ void summaryregion(LinkedList &Data) {
 	double area, P, Price, edgecost;
 
 
-
 	if (vectors) {
 
 		for (int I = 0; I < Data.getsize(); I++) {
 
-			Node* tmp;
+			Node *tmp;
 			tmp = Data.gethead();
 
 
-			while (tmp != nullptr) {
+			while (tmp != NULL) {
 
 				CounterTop iter = Data.Data(tmp);
 
@@ -667,8 +666,7 @@ void summaryregion(LinkedList &Data) {
 			     endl;
 
 		}
-	}
-	else {
+	} else {
 		cout << "No Data in List.\n";
 	}
 }
@@ -686,10 +684,10 @@ void summarystone(LinkedList &Data) {
 
 		for (int I = 0; I < Data.getsize(); I++) {
 
-			Node* tmp;
+			Node *tmp;
 			tmp = Data.gethead();
 
-				CounterTop iter = Data.Data(tmp);
+			CounterTop iter = Data.Data(tmp);
 
 
 			switch (iter.getSC()) {
