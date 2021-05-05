@@ -424,6 +424,8 @@ void uploadfile(string filename, bool validation, LinkedList &Data) {
 				     << "\tRecords with Errors: " << errorcount << endl
 				     << "\tRecords without Errors: " << correct << endl;
 
+				cout << Data.getsize();
+
 				inFile.close();
 				return;
 			}
@@ -444,7 +446,8 @@ void alldetails(LinkedList &Data) {
 		for (int I = 0; I < Data.getsize(); I++) {
 			count++;
 
-			Counter = Data.display(head);
+			Data.printlist();
+
 
 			area = Counter.getA();
 			Price = Counter.getP();

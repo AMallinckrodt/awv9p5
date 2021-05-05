@@ -8,6 +8,7 @@
 #include "CounterTop.h"
 #include <iostream>
 #include <iomanip>
+//#include "Node.h"
 
 struct Node{
 	CounterTop data;
@@ -17,31 +18,30 @@ struct Node{
 class LinkedList{
 
 private:
-	Node *head, *tail;
+	Node *head;
+	Node *tail;
 	int size = 0;
 
 public:
-
-	LinkedList() {
+	LinkedList(){
 		head = nullptr;
-		tail = nullptr;
-	}
+		tail = nullptr;} // Constructor
 
-	~LinkedList() { clear(); };
+	~LinkedList() { clear();}; //Destructor
 
 	void add_node(CounterTop); //Adds another Value
 
-	Node *gethead() {return head;}//Inline function to return the header
-	int getsize() {
-		return size;
-	} //Returns the Size of the Linked list
+	int getsize(){return size;} //Returns the Size of the Linked list
 
 	bool empty(); //Bool to check if List is Empty
-	void clear(); //Function to Clear the List
-	CounterTop display(Node *head); // Displays all Values in List
-	static CounterTop Data(Node *ptr);
 
-	static void disp(Node *head);
+	void clear(); //Function to Clear the List
+
+	void printlist();// Prints All Values in List
+
+	CounterTop Data(Node *ptr); // Returns Data for a given pointer
+
+	Node *gethead(){return head;}//Inline function to return the header
 
 };
 
