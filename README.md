@@ -19,3 +19,5 @@ Project 5 GT
 
 This program seeks to update previous projects by using a linkedlist of CounterTop objects, rather than using vectors.
 
+In Project Five, a Linked List Class was created (LinkedList.h & LinkedList.cpp). The CounterTop class adapted to work as nodes for the LinkedList Class - it was deemed that adapting the existing class to work in the list would be cleaner than creating an entirely new Node class.}
+
