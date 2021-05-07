@@ -13,14 +13,12 @@
 class LinkedList{
 
 private:
-	CounterTop *head;
-	CounterTop *tail;
+	CounterTop* head;
+	CounterTop* tail;
 	int size = 0;
 
 public:
-	LinkedList(){
-		head = nullptr;
-		tail = nullptr;} // Constructor
+	LinkedList(): head(nullptr), tail(nullptr){}
 
 	~LinkedList() {clear();}; //Destructor
 
@@ -28,13 +26,15 @@ public:
 
 	int getsize(){return size;} //Returns the Size of the Linked list
 
-	bool empty(); //Bool to check if List is Empty
+	bool empty() const; //Bool to check if List is Empty
 
 	void clear(); //Function to Clear the List
 
 	void printlist();// Prints All Values in List
 
 	CounterTop *gethead(){return head;}//Inline function to return the header
+
+	CounterTop* gettail(){return tail;}
 
 };
 

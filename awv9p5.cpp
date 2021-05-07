@@ -123,12 +123,10 @@ int main() {
 
 			default:
 				cout << endl << "ERROR: Invalid Choice";
-				displayMenu();
 				break;
 
 		}
 	}
-
 
 	return 0;
 }
@@ -348,10 +346,9 @@ void uploadfile(string filename, LinkedList &Data) {
 
 					CounterTop Counter;
 					Counter.setData(REG, OC, H, L, D, Cost, area, LE, DE, SC);
-
 					Data.add_node(Counter);
-
-				} else {
+				}
+				else {
 					cout << endl << endl;
 					errorcount++;
 				}
@@ -395,6 +392,8 @@ void alldetails(LinkedList &Data) {
 	double area, Price;
 	CounterTop* head = Data.gethead();
 	CounterTop Counter;
+
+	Data.printlist();
 
 	if (vectors) {
 		for (int I = 0; I < Data.getsize(); I++) {

@@ -26,7 +26,7 @@ using namespace std;
 
 class CounterTop {
 private:
-	CounterTop *next;
+	CounterTop* next;
 	string region;
 	string ordercode;
 	double height;
@@ -72,8 +72,6 @@ public:
 	void setnext(CounterTop* N){next = N;}
 
 	CounterTop* getnext(){return next;}
-
-	//CounterTop data(CounterTop* N){return CounterTop;}
 
 };
 
