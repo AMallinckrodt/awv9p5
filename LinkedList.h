@@ -8,18 +8,13 @@
 #include "CounterTop.h"
 #include <iostream>
 #include <iomanip>
-//#include "Node.h"
 
-struct Node{
-	CounterTop data;
-	Node *next;
-};
 
 class LinkedList{
 
 private:
-	Node *head;
-	Node *tail;
+	CounterTop *head;
+	CounterTop *tail;
 	int size = 0;
 
 public:
@@ -27,7 +22,7 @@ public:
 		head = nullptr;
 		tail = nullptr;} // Constructor
 
-	~LinkedList() { clear();}; //Destructor
+	~LinkedList() {clear();}; //Destructor
 
 	void add_node(CounterTop); //Adds another Value
 
@@ -39,9 +34,7 @@ public:
 
 	void printlist();// Prints All Values in List
 
-	CounterTop Data(Node *ptr); // Returns Data for a given pointer
-
-	Node *gethead(){return head;}//Inline function to return the header
+	CounterTop *gethead(){return head;}//Inline function to return the header
 
 };
 

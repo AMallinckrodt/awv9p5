@@ -20,7 +20,8 @@
 
 using namespace std;
 
-CounterTop::CounterTop() {
+CounterTop::CounterTop(){
+	next = nullptr;
 	region = "";
 	ordercode = "";
 	stonecode = '?';
@@ -31,6 +32,19 @@ CounterTop::CounterTop() {
 	area = 0;
 	lened = 0;
 	deped = 0;
+}
+
+void CounterTop::setData(string R, string OC, double H, double L, double D, double P, int A, int LE, int DE, char SC) {
+	region = R;
+	ordercode = OC;
+	height = H;
+	length = L;
+	depth = D;
+	price = P;
+	area = A;
+	lened = LE;
+	deped = DE;
+	stonecode = SC;
 }
 
 void CounterTop::Output() {
@@ -67,3 +81,5 @@ bool CounterTop::Comparator(string search) const {
 		return false;
 	}
 }
+
+

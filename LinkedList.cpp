@@ -9,32 +9,23 @@
 
 using namespace std;
 
-/*void LinkedList::add_node(CounterTop value) {
-	Node *tmp = new Node;
-	if(head == nullptr){
-		head = tmp;
 
-	}
-
-}
-*/
-
-void LinkedList::add_node(CounterTop value){
-	Node *temp = new Node;
-	temp->data = value;
-	temp->next = nullptr;
+void LinkedList::add_node(CounterTop obj){
+	CounterTop *temp = new CounterTop;
+	temp->operator=(obj);
+	temp->setnext(nullptr);
 
 	if (head == nullptr)
 	{
-		head = temp;
-		tail = temp;
+		head->setnext(temp);
+		tail->setnext(temp);
 		cout << "head address: " << &head << endl;
 		cout << "Tail address: " << &tail << endl;
 		cout << "Temp address: " << &temp << endl;
 	}
 	else
 	{
-		tail->next = temp;
+		tail->setnext(temp);
 		tail = temp;
 	cout << "head address: " << &head << endl;
 	cout << "Tail address: " << &tail << endl;
@@ -46,19 +37,20 @@ void LinkedList::add_node(CounterTop value){
 
 void LinkedList::printlist(){
 
-	Node * current = head;
+	CounterTop * current = head;
 
 	while (current != nullptr) {
-		current->data.Output();
-		current = current->next;
+		current->Output();
+		current->setnext(current);
 	}
 }
 
 void LinkedList::clear() {
-	Node *current = head;
+	CounterTop *current = head;
 
 	while (current != nullptr) {
-		Node *next = current->next;
+		CounterTop *next = current;
+		current->setnext(current);
 		delete current;
 		current = next;
 	}
@@ -78,7 +70,4 @@ bool LinkedList::empty() {
 	}
 }
 
-CounterTop LinkedList::Data(Node *ptr) {
-	return ptr->data;
-}
 

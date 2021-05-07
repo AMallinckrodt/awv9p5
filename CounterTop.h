@@ -26,6 +26,7 @@ using namespace std;
 
 class CounterTop {
 private:
+	CounterTop *next;
 	string region;
 	string ordercode;
 	double height;
@@ -40,25 +41,7 @@ private:
 public:
 	CounterTop();
 
-	void setReg(string R) { region = R; }
-
-	void setOC(string OC) { ordercode = OC; }
-
-	void setH(double H) { height = H; }
-
-	void setL(double L) { length = L; }
-
-	void setD(double D) { depth = D; }
-
-	void setP(double P) { price = P; }
-
-	void setA(int A) { area = A; }
-
-	void setLE(int LE) { lened = LE; }
-
-	void setDE(int DE) { deped = DE; }
-
-	void setSC(char SC) { stonecode = SC; }
+	void setData(string, string, double, double, double, double, int, int, int, char);
 
 	double getP() const {
 		return price;
@@ -82,6 +65,15 @@ public:
 
 	bool Comparator(string) const;
 
+	// Operator & Listing Functions
+
+	CounterTop& operator= (CounterTop &obj) = default;
+
+	void setnext(CounterTop* N){next = N;}
+
+	CounterTop* getnext(){return next;}
+
+	//CounterTop data(CounterTop* N){return CounterTop;}
 
 };
 

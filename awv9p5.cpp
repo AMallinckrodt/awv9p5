@@ -46,7 +46,7 @@ char displayMenu();
 
 string get_file_path();
 
-void uploadfile(string, bool, LinkedList &);
+void uploadfile(string, LinkedList &);
 
 void alldetails(LinkedList &);
 
@@ -60,7 +60,7 @@ bool clearallvectors(LinkedList &);
 
 int main() {
 
-	bool validation = false;
+
 	LinkedList Data;
 
 // Introduction Message
@@ -85,7 +85,7 @@ int main() {
 			case 'U':
 			case 'u':
 				filename = get_file_path();
-				uploadfile(filename, validation, Data);
+				uploadfile(filename, Data);
 				break;
 
 			case 'A':
@@ -100,25 +100,30 @@ int main() {
 
 			case 'R':
 			case 'r':
-				summaryregion(Data);
+				//summaryregion(Data);
 				break;
 
 			case 'S':
 			case 's':
-				summarystone(Data);
+				//summarystone(Data);
 				break;
 
 			case 'C':
 			case 'c':
-				cleared = clearallvectors(Data);
-				if (!cleared) {
-					cout << "Vectors are already Empty.\n";
-				}
+				//cleared = clearallvectors(Data);
+				//if (!cleared) {
+				//	cout << "Vectors are already Empty.\n";
+				//}
 				break;
 
 			case 'q':
 			case 'Q':
 				cout << endl << "Exiting Program. Goodbye." << endl;
+				break;
+
+			default:
+				cout << endl << "ERROR: Invalid Choice";
+				displayMenu();
 				break;
 
 		}
@@ -141,13 +146,8 @@ string get_file_path() {
 
 char displayMenu() {
 
-	string choice;
-	char returning;
-	bool error = true;
+	char choice;
 
-	while (error) {
-
-		error = false;
 		cout << setw(40) << endl << "MENU" << endl << endl <<
 		     setw(40) << "Upload a regional sales data file" << setw(6) << "U" << endl <<
 		     setw(40) << "Display details (All loaded data)" << setw(6) << "A" << endl <<
@@ -159,48 +159,11 @@ char displayMenu() {
 
 		cout << "Please enter your choice:\t";
 		cin >> choice;
+		return choice;
 
-		switch (choice[0]) {
-
-			case 'U':
-			case 'u':
-				break;
-
-			case 'A':
-			case 'a':
-				break;
-
-			case 'O':
-			case 'o':
-				break;
-
-			case 'R':
-			case 'r':
-				break;
-
-			case 'S':
-			case 's':
-				break;
-
-			case 'C':
-			case 'c':
-				break;
-
-			case 'q':
-			case 'Q':
-				break;
-
-			default:
-				cout << endl << "ERROR: Invalid Choice";
-				error = true;
-				break;
-		}
-		returning = choice[0];
-	}
-	return returning;
 }
 
-void uploadfile(string filename, bool validation, LinkedList &Data) {
+void uploadfile(string filename, LinkedList &Data) {
 
 // Variables:
 	string line, OC, NA, STC, REG;
@@ -208,6 +171,7 @@ void uploadfile(string filename, bool validation, LinkedList &Data) {
 	int errorcount = 0, totalcount = 0, C = 0;
 	char slash, SC;
 	double P, L, D, H, area, Cost, edgecost;
+	bool validation = false;
 
 // File Validation
 	ifstream inFile;
@@ -383,17 +347,7 @@ void uploadfile(string filename, bool validation, LinkedList &Data) {
 					// Create Class and Upload to Vector
 
 					CounterTop Counter;
-
-					Counter.setReg(REG);
-					Counter.setOC(OC);
-					Counter.setH(H);
-					Counter.setL(L);
-					Counter.setD(D);
-					Counter.setA(area);
-					Counter.setP(Cost);
-					Counter.setLE(LE);
-					Counter.setDE(DE);
-					Counter.setSC(SC);
+					Counter.setData(REG, OC, H, L, D, Cost, area, LE, DE, SC);
 
 					Data.add_node(Counter);
 
@@ -439,7 +393,7 @@ void alldetails(LinkedList &Data) {
 	int count = 0;
 	double tarea = 0, tcost = 0;
 	double area, Price;
-	Node* head = Data.gethead();
+	CounterTop* head = Data.gethead();
 	CounterTop Counter;
 
 	if (vectors) {
@@ -486,16 +440,16 @@ void orderdetails(LinkedList &Data) {
 			int i = 0;
 			int n = Data.getsize();
 
-			Node *tmp = Data.gethead();
+			CounterTop *tmp = Data.gethead();
 
 			while (tmp != nullptr) {
-				if (tmp->data.Comparator(search))  //If element is present in the list
+				if (tmp->Comparator(search))  //If element is present in the list
 				{
-					tmp->data.OrderOutput();
+					tmp->OrderOutput();
 					valid = true;
 				} else {
 					i++;
-					tmp = tmp->next;
+					tmp->getnext();
 				}
 			}
 
@@ -532,7 +486,7 @@ void orderdetails(LinkedList &Data) {
 	}
 }
 
-void summaryregion(LinkedList &Data) {
+/*void summaryregion(LinkedList &Data) {
 	bool vectors = Data.empty();
 
 	double costN = 0, costS = 0, costE = 0, costW = 0, costO = 0;
@@ -547,13 +501,12 @@ void summaryregion(LinkedList &Data) {
 
 		for (int I = 0; I < Data.getsize(); I++) {
 
-			Node *tmp;
-			tmp = Data.gethead();
+			CounterTop* tmp;
 
 
-			while (tmp != NULL) {
+			while (tmp != nullptr) {
 
-				CounterTop iter = Data.Data(tmp);
+				CounterTop iter;
 
 				const string r = iter.getR();
 
@@ -614,7 +567,6 @@ void summaryregion(LinkedList &Data) {
 						areaO += area;
 						break;
 				}
-				*tmp->next;
 			}
 
 			// Final Table Output
@@ -687,10 +639,10 @@ void summarystone(LinkedList &Data) {
 
 		for (int I = 0; I < Data.getsize(); I++) {
 
-			Node *tmp;
+			CounterTop *tmp;
 			tmp = Data.gethead();
 
-			CounterTop iter = Data.Data(tmp);
+			CounterTop iter = tmp->data(tmp);
 
 
 			switch (iter.getSC()) {
@@ -728,7 +680,7 @@ void summarystone(LinkedList &Data) {
 					costq += Price;
 					break;
 			}
-			*tmp->next;
+			tmp->setnext(tmp++);
 		}
 		// Stone Summary Table
 		cout << "\n\tTOTALS (Summary by Stone)" << endl;
@@ -780,7 +732,7 @@ bool clearallvectors(LinkedList &Data) {
 			switch (V) {
 				case 'Y':
 				case 'y':
-					cout << "Clearing Vectors..." << endl;
+					cout << "Clearing List..." << endl;
 
 					Data.~LinkedList();
 
@@ -807,3 +759,4 @@ bool clearallvectors(LinkedList &Data) {
 	}
 	return true;
 }
+*/
